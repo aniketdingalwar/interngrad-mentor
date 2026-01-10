@@ -1,61 +1,20 @@
-import { useRef, useEffect } from "react";
-import { useChat } from "@/hooks/useChat";
-import ChatHeader from "@/components/ChatHeader";
-import ChatMessage from "@/components/ChatMessage";
-import ChatInput from "@/components/ChatInput";
-import TypingIndicator from "@/components/TypingIndicator";
-import WelcomeMessage from "@/components/WelcomeMessage";
-import QuickActions from "@/components/QuickActions";
+import ChatWidget from "@/components/ChatWidget";
 
 const Index = () => {
-  const { messages, isLoading, sendMessage } = useChat();
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  // Auto-scroll to bottom on new messages
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [messages, isLoading]);
-
-  const hasMessages = messages.length > 0;
-
   return (
-    <div className="flex flex-col h-screen bg-background">
-      <ChatHeader />
-
-      {/* Chat area */}
-      <div
-        ref={scrollRef}
-        className="flex-1 overflow-y-auto chat-scroll"
-      >
-        {!hasMessages ? (
-          <div className="flex flex-col justify-center min-h-full">
-            <WelcomeMessage />
-            <QuickActions onAction={sendMessage} />
-          </div>
-        ) : (
-          <div className="flex flex-col gap-4 p-4 max-w-3xl mx-auto">
-            {messages.map((message, index) => (
-              <ChatMessage
-                key={message.id}
-                role={message.role}
-                content={message.content}
-                isStreaming={
-                  isLoading &&
-                  message.role === "assistant" &&
-                  index === messages.length - 1
-                }
-              />
-            ))}
-            {isLoading && messages[messages.length - 1]?.role !== "assistant" && (
-              <TypingIndicator />
-            )}
-          </div>
-        )}
+    <div className="min-h-screen bg-background">
+      {/* Your main website content would go here */}
+      <div className="flex flex-col items-center justify-center min-h-screen p-8 text-center">
+        <h1 className="font-display text-4xl font-bold text-foreground mb-4">
+          Welcome to Interngrad
+        </h1>
+        <p className="text-lg text-muted-foreground max-w-md">
+          Bridge the gap between college and industry. Click the chat button to get started! 💬
+        </p>
       </div>
 
-      <ChatInput onSend={sendMessage} disabled={isLoading} />
+      {/* Floating Chat Widget */}
+      <ChatWidget />
     </div>
   );
 };
