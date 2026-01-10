@@ -1,5 +1,6 @@
 import { Bot, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import CallbackForm from "./CallbackForm";
 
 const ChatHeader = () => {
   return (
@@ -20,17 +21,21 @@ const ChatHeader = () => {
         </div>
       </div>
 
-      <Button
-        variant="ghost"
-        size="sm"
-        asChild
-        className="text-muted-foreground hover:text-foreground"
-      >
-        <a href="https://interngrad.in" target="_blank" rel="noopener noreferrer">
-          <span className="text-xs mr-1.5">Visit Site</span>
-          <ExternalLink className="w-3.5 h-3.5" />
-        </a>
-      </Button>
+      <div className="flex items-center gap-2">
+        <CallbackForm />
+        
+        <Button
+          variant="ghost"
+          size="sm"
+          asChild
+          className="text-muted-foreground hover:text-foreground"
+        >
+          <a href="https://interngrad.in" target="_blank" rel="noopener noreferrer">
+            <span className="text-xs mr-1.5">Visit Site</span>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </Button>
+      </div>
     </header>
   );
 };
