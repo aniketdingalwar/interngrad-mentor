@@ -16,10 +16,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Phone, Send, CheckCircle } from "lucide-react";
+import { Phone, Send, CheckCircle, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import emailjs from "@emailjs/browser";
+
+// EmailJS Configuration
+const EMAILJS_SERVICE_ID = "service_u6g6omo";
+const EMAILJS_TEMPLATE_ID = "template_6t7crhq";
+const EMAILJS_PUBLIC_KEY = "yhV9Wv8X9OH14Bbey";
 
 const CallbackForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -29,7 +36,7 @@ const CallbackForm = () => {
     domain: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.name || !formData.email || !formData.phone || !formData.domain) {
@@ -37,15 +44,36 @@ const CallbackForm = () => {
       return;
     }
 
-    // Simulate submission
-    setSubmitted(true);
-    toast.success("🎉 Request submitted! We'll call you soon.");
+    setIsLoading(true);
     
-    setTimeout(() => {
-      setOpen(false);
-      setSubmitted(false);
-      setFormData({ name: "", email: "", phone: "", domain: "" });
-    }, 2000);
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          phone: formData.phone,
+          domain: formData.domain,
+          message: `Callback request from ${formData.name} (${formData.email}) - Phone: ${formData.phone} - Interest: ${formData.domain}`,
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+      
+      setSubmitted(true);
+      toast.success("🎉 Request submitted! We'll call you soon.");
+      
+      setTimeout(() => {
+        setOpen(false);
+        setSubmitted(false);
+        setFormData({ name: "", email: "", phone: "", domain: "" });
+      }, 2000);
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      toast.error("❌ Failed to submit. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -128,9 +156,13 @@ const CallbackForm = () => {
               </Select>
             </div>
             
-            <Button type="submit" className="w-full gap-2">
-              <Send className="w-4 h-4" />
-              Submit Request
+            <Button type="submit" className="w-full gap-2" disabled={isLoading}>
+              {isLoading ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Send className="w-4 h-4" />
+              )}
+              {isLoading ? "Sending..." : "Submit Request"}
             </Button>
           </form>
         )}
