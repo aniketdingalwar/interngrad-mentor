@@ -21,7 +21,7 @@ import { toast } from "sonner";
 import emailjs from "@emailjs/browser";
 
 // EmailJS Configuration
-const EMAILJS_SERVICE_ID = "service_u6g6omo";
+const EMAILJS_SERVICE_ID = "service_5to8i18";
 const EMAILJS_TEMPLATE_ID = "template_6t7crhq";
 const EMAILJS_PUBLIC_KEY = "yhV9Wv8X9OH14Bbey";
 
