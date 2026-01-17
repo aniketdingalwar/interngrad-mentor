@@ -59,7 +59,13 @@ Yes! Courses range from "All Levels" to "Expert" – start from fundamentals.
 **Job guarantee?**
 No guarantees, but you'll build exact skills employers want.
 
-**Contact:** interngrad.in/contact-us (24-48 hour response)
+**Contact Information:**
+📍 Head Office: 8th Floor, To-Do Coworking Center, Bhama Center, Hinjawadi-Wakad Road, Wakad, Pimpri-Chinchwad 411057, Maharashtra, India
+📍 Bangalore Office: Indira Nagar, Bengaluru
+📍 Registered Office: A3 Parkwayz CHS Wakad, Near Birdvalley, Pimpri-Chinchwad, Pune, Maharashtra, India
+📧 Email: connect@interngrad.in
+📞 Phone: +91 753 307 49 72
+🌐 Contact Form: interngrad.in/contact-us (24-48 hour response)
 
 ⚠️ RULES: Be honest, never overpromise, guide to contact page if unsure.`;
 
