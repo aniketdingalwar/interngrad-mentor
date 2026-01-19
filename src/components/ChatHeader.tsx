@@ -1,14 +1,19 @@
-import { Bot, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CallbackForm from "./CallbackForm";
+import internGradLogo from "@/assets/interngrad-logo.png";
 
 const ChatHeader = () => {
   return (
     <header className="flex items-center justify-between px-4 py-3 border-b border-border bg-card/80 glass-effect sticky top-0 z-10">
       <div className="flex items-center gap-3">
         {/* Logo */}
-        <div className="w-10 h-10 rounded-xl chat-gradient flex items-center justify-center shadow-sm">
-          <Bot className="w-5 h-5 text-primary-foreground" />
+        <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-sm overflow-hidden">
+          <img 
+            src={internGradLogo} 
+            alt="Interngrad Logo" 
+            className="w-8 h-8 object-contain"
+          />
         </div>
         
         <div>
