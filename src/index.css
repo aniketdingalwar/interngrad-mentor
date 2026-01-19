@@ -6,98 +6,100 @@
 
 @layer base {
   :root {
-    /* Interngrad Brand - Warm, Professional, Educational */
-    --background: 30 25% 98%;
-    --foreground: 220 25% 12%;
+    /* Interngrad Brand - Deep Purple & Lavender */
+    --background: 217 68% 96%;
+    --foreground: 263 15% 18%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 25% 12%;
+    --card-foreground: 263 15% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 25% 12%;
+    --popover-foreground: 263 15% 18%;
 
-    /* Deep Teal - Trust & Education */
-    --primary: 175 60% 28%;
+    /* Deep Purple - Primary Brand Color #745798 */
+    --primary: 270 30% 47%;
     --primary-foreground: 0 0% 100%;
 
-    /* Warm Coral - Energy & Action */
-    --accent: 15 85% 60%;
-    --accent-foreground: 0 0% 100%;
+    /* Soft Violet - Accent #AF9AC9 */
+    --accent: 270 30% 70%;
+    --accent-foreground: 263 15% 18%;
 
-    --secondary: 30 20% 94%;
-    --secondary-foreground: 220 25% 20%;
+    /* Cool Lavender - Secondary #8C8AAF */
+    --secondary: 243 18% 61%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 30 15% 92%;
-    --muted-foreground: 220 15% 45%;
+    /* Muted Purple-Gray - Neutral #948BAC */
+    --muted: 255 16% 61%;
+    --muted-foreground: 263 20% 35%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 30 20% 88%;
-    --input: 30 20% 88%;
-    --ring: 175 60% 28%;
+    --border: 255 20% 88%;
+    --input: 255 20% 88%;
+    --ring: 270 30% 47%;
 
     --radius: 0.75rem;
 
-    /* Chat specific */
-    --chat-user: 175 60% 28%;
+    /* Chat specific - Purple theme */
+    --chat-user: 270 30% 47%;
     --chat-user-foreground: 0 0% 100%;
-    --chat-assistant: 30 20% 96%;
-    --chat-assistant-foreground: 220 25% 12%;
+    --chat-assistant: 217 50% 96%;
+    --chat-assistant-foreground: 263 15% 18%;
 
     /* Sidebar */
-    --sidebar-background: 30 25% 97%;
-    --sidebar-foreground: 220 20% 25%;
-    --sidebar-primary: 175 60% 28%;
+    --sidebar-background: 217 60% 97%;
+    --sidebar-foreground: 263 15% 25%;
+    --sidebar-primary: 270 30% 47%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 30 25% 94%;
-    --sidebar-accent-foreground: 220 20% 20%;
-    --sidebar-border: 30 20% 90%;
-    --sidebar-ring: 175 60% 28%;
+    --sidebar-accent: 270 25% 92%;
+    --sidebar-accent-foreground: 263 15% 20%;
+    --sidebar-border: 255 20% 90%;
+    --sidebar-ring: 270 30% 47%;
   }
 
   .dark {
-    --background: 220 25% 8%;
-    --foreground: 30 20% 95%;
+    --background: 263 25% 8%;
+    --foreground: 270 20% 95%;
 
-    --card: 220 25% 12%;
-    --card-foreground: 30 20% 95%;
+    --card: 263 25% 12%;
+    --card-foreground: 270 20% 95%;
 
-    --popover: 220 25% 10%;
-    --popover-foreground: 30 20% 95%;
+    --popover: 263 25% 10%;
+    --popover-foreground: 270 20% 95%;
 
-    --primary: 175 55% 45%;
-    --primary-foreground: 220 25% 8%;
+    --primary: 270 35% 55%;
+    --primary-foreground: 0 0% 100%;
 
-    --accent: 15 80% 55%;
+    --accent: 270 30% 65%;
     --accent-foreground: 0 0% 100%;
 
-    --secondary: 220 20% 18%;
-    --secondary-foreground: 30 20% 90%;
+    --secondary: 243 20% 45%;
+    --secondary-foreground: 270 20% 95%;
 
-    --muted: 220 20% 18%;
-    --muted-foreground: 220 15% 60%;
+    --muted: 263 20% 18%;
+    --muted-foreground: 270 15% 60%;
 
     --destructive: 0 62% 40%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 20%;
-    --input: 220 20% 20%;
-    --ring: 175 55% 45%;
+    --border: 263 20% 20%;
+    --input: 263 20% 20%;
+    --ring: 270 35% 55%;
 
-    --chat-user: 175 55% 40%;
+    --chat-user: 270 35% 50%;
     --chat-user-foreground: 0 0% 100%;
-    --chat-assistant: 220 20% 15%;
-    --chat-assistant-foreground: 30 20% 95%;
+    --chat-assistant: 263 20% 15%;
+    --chat-assistant-foreground: 270 20% 95%;
 
-    --sidebar-background: 220 25% 10%;
-    --sidebar-foreground: 30 20% 90%;
-    --sidebar-primary: 175 55% 45%;
-    --sidebar-primary-foreground: 220 25% 8%;
-    --sidebar-accent: 220 20% 16%;
-    --sidebar-accent-foreground: 30 20% 90%;
-    --sidebar-border: 220 20% 18%;
-    --sidebar-ring: 175 55% 45%;
+    --sidebar-background: 263 25% 10%;
+    --sidebar-foreground: 270 20% 90%;
+    --sidebar-primary: 270 35% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 263 20% 16%;
+    --sidebar-accent-foreground: 270 20% 90%;
+    --sidebar-border: 263 20% 18%;
+    --sidebar-ring: 270 35% 55%;
   }
 }
 
@@ -118,11 +120,11 @@
 
 @layer utilities {
   .chat-gradient {
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(175 50% 35%) 100%);
+    background: linear-gradient(135deg, hsl(270 30% 47%) 0%, hsl(270 30% 60%) 100%);
   }
 
   .hero-gradient {
-    background: linear-gradient(135deg, hsl(30 25% 98%) 0%, hsl(30 30% 94%) 100%);
+    background: linear-gradient(135deg, hsl(217 68% 96%) 0%, hsl(270 25% 92%) 100%);
   }
 
   .message-shadow {
