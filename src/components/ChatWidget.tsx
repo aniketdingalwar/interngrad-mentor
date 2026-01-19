@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Trash2 } from "lucide-react";
+import { MessageCircle, X, Trash2, Minus, Maximize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useChat } from "@/hooks/useChat";
 import ChatMessage from "@/components/ChatMessage";
@@ -8,9 +8,11 @@ import TypingIndicator from "@/components/TypingIndicator";
 import WelcomeMessage from "@/components/WelcomeMessage";
 import QuickActions from "@/components/QuickActions";
 import CallbackForm from "@/components/CallbackForm";
+import { cn } from "@/lib/utils";
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
   const { messages, isLoading, sendMessage, clearChat } = useChat();
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -23,11 +25,41 @@ const ChatWidget = () => {
 
   const hasMessages = messages.length > 0;
 
+  const handleClose = () => {
+    setIsOpen(false);
+    setIsMinimized(false);
+  };
+
+  const handleMinimize = () => {
+    setIsMinimized(true);
+  };
+
+  const handleMaximize = () => {
+    setIsMinimized(false);
+  };
+
+  const handleToggle = () => {
+    if (!isOpen) {
+      setIsOpen(true);
+      setIsMinimized(false);
+    } else if (isMinimized) {
+      setIsMinimized(false);
+    } else {
+      handleClose();
+    }
+  };
+
   return (
     <>
-      {/* Chat Popup */}
-      {isOpen && (
-        <div className="fixed bottom-20 right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-[400px] h-[550px] bg-card rounded-2xl shadow-2xl border border-border flex flex-col overflow-hidden animate-fade-in-up z-50">
+      {/* Full Chat Popup */}
+      {isOpen && !isMinimized && (
+        <div 
+          className={cn(
+            "fixed bottom-20 right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-[400px] h-[550px]",
+            "bg-card rounded-2xl shadow-2xl border border-border flex flex-col overflow-hidden z-50",
+            "animate-scale-in"
+          )}
+        >
           {/* Header */}
           <header className="flex items-center justify-between px-4 py-3 border-b border-border bg-card">
             <div className="flex items-center gap-3">
@@ -64,7 +96,17 @@ const ChatWidget = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setIsOpen(false)}
+                onClick={handleMinimize}
+                className="h-8 w-8 text-muted-foreground hover:text-foreground"
+                title="Minimize"
+              >
+                <Minus className="w-4 h-4" />
+              </Button>
+              
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handleClose}
                 className="h-8 w-8 text-muted-foreground hover:text-foreground"
               >
                 <X className="w-4 h-4" />
@@ -108,13 +150,69 @@ const ChatWidget = () => {
         </div>
       )}
 
+      {/* Minimized Chat Bar */}
+      {isOpen && isMinimized && (
+        <div
+          className={cn(
+            "fixed bottom-20 right-4 sm:right-6",
+            "bg-card rounded-xl shadow-xl border border-border",
+            "flex items-center gap-3 px-4 py-3 z-50",
+            "animate-scale-in cursor-pointer hover:shadow-2xl transition-shadow"
+          )}
+          onClick={handleMaximize}
+        >
+          <div className="w-8 h-8 rounded-lg chat-gradient flex items-center justify-center shadow-sm">
+            <MessageCircle className="w-4 h-4 text-primary-foreground" />
+          </div>
+          
+          <div className="flex-1 min-w-0">
+            <p className="font-medium text-sm text-foreground truncate">
+              Interngrad AI
+            </p>
+            <p className="text-xs text-muted-foreground truncate">
+              {hasMessages
+                ? `${messages.length} message${messages.length > 1 ? "s" : ""}`
+                : "Click to continue chat"}
+            </p>
+          </div>
+          
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleMaximize();
+            }}
+            className="h-8 w-8 text-muted-foreground hover:text-foreground"
+            title="Maximize"
+          >
+            <Maximize2 className="w-4 h-4" />
+          </Button>
+          
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleClose();
+            }}
+            className="h-8 w-8 text-muted-foreground hover:text-foreground"
+          >
+            <X className="w-4 h-4" />
+          </Button>
+        </div>
+      )}
+
       {/* Floating Button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-4 right-4 sm:right-6 w-14 h-14 rounded-full chat-gradient shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center z-50 hover:scale-105"
+        onClick={handleToggle}
+        className={cn(
+          "fixed bottom-4 right-4 sm:right-6 w-14 h-14 rounded-full chat-gradient",
+          "shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center z-50 hover:scale-105"
+        )}
         aria-label={isOpen ? "Close chat" : "Open chat"}
       >
-        {isOpen ? (
+        {isOpen && !isMinimized ? (
           <X className="w-6 h-6 text-primary-foreground" />
         ) : (
           <MessageCircle className="w-6 h-6 text-primary-foreground" />
