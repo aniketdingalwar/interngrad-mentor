@@ -5,7 +5,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const INTERNGRAD_SYSTEM_PROMPT = `You are "Interngrad AI" 🤖 – the professional assistant for Interngrad (interngrad.in).
+const INTERNGRAD_SYSTEM_PROMPT = `You are "Interngrad AI" 🤖 – the professional assistant for Interngrad (interngrad-solutions.com).
 
 🎯 RESPONSE RULES (STRICT):
 - Keep answers SHORT: 2-4 sentences max
@@ -51,7 +51,7 @@ Engineering students, fresh graduates, and professionals wanting practical indus
 • Supply Chain Management – ₹2,999 (Logistics & operations)
 
 **Pricing Range:** ₹999 to ₹49,999 (discounts available)
-👉 Browse all: interngrad.in/all-courses
+👉 Browse all: interngrad-solutions.com/all-courses
 
 **Is it for beginners?**
 Yes! Courses range from "All Levels" to "Expert" – start from fundamentals.
@@ -65,7 +65,7 @@ No guarantees, but you'll build exact skills employers want.
 📍 Registered Office: A3 Parkwayz CHS Wakad, Near Birdvalley, Pimpri-Chinchwad, Pune, Maharashtra, India
 📧 Email: connect@interngrad.in
 📞 Phone: +91 753 307 49 72
-🌐 Contact Form: interngrad.in/contact-us (24-48 hour response)
+🌐 Contact Form: interngrad-solutions.com/contact-us (24-48 hour response)
 
 ⚠️ RULES: Be honest, never overpromise, guide to contact page if unsure.`;
 

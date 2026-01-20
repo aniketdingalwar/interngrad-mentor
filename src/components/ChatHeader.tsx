@@ -35,7 +35,7 @@ const ChatHeader = () => {
           asChild
           className="text-muted-foreground hover:text-foreground"
         >
-          <a href="https://interngrad.in" target="_blank" rel="noopener noreferrer">
+          <a href="https://interngrad-solutions.com" target="_blank" rel="noopener noreferrer">
             <span className="text-xs mr-1.5">Visit Site</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
