@@ -62,8 +62,8 @@ export const useSpeechRecognition = (): UseSpeechRecognitionReturn => {
     if (SpeechRecognitionAPI) {
       setIsSupported(true);
       recognitionRef.current = new SpeechRecognitionAPI();
-      recognitionRef.current.continuous = true;
-      recognitionRef.current.interimResults = true;
+      recognitionRef.current.continuous = false;
+      recognitionRef.current.interimResults = false;
       recognitionRef.current.lang = "en-IN"; // Indian English
     } else {
       setIsSupported(false);
@@ -119,20 +119,12 @@ export const useSpeechRecognition = (): UseSpeechRecognitionReturn => {
     };
 
     recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
-      resetSilenceTimeout();
-      let finalTranscript = "";
-      let interimTranscript = "";
-
-      for (let i = event.resultIndex; i < event.results.length; i++) {
-        const transcriptPart = event.results[i][0].transcript;
-        if (event.results[i].isFinal) {
-          finalTranscript += transcriptPart;
-        } else {
-          interimTranscript += transcriptPart;
-        }
+      clearSilenceTimeout();
+      const result = event.results[0];
+      if (result && result.isFinal) {
+        const finalTranscript = result[0].transcript.trim();
+        setTranscript(finalTranscript);
       }
-
-      setTranscript(finalTranscript || interimTranscript);
     };
 
     recognitionRef.current.onerror = (event: SpeechRecognitionErrorEvent) => {
