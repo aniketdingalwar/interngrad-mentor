@@ -1,5 +1,46 @@
+import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { Bot, User } from "lucide-react";
+
+function renderMarkdownLinks(text: string) {
+  // Supports only markdown links: [label](https://example.com)
+  // Keeps everything else as plain text (no full markdown parsing needed).
+  const parts: ReactNode[] = [];
+  const linkRegex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
+
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = linkRegex.exec(text)) !== null) {
+    const [full, label, href] = match;
+    const start = match.index;
+    const end = start + full.length;
+
+    if (start > lastIndex) {
+      parts.push(text.slice(lastIndex, start));
+    }
+
+    parts.push(
+      <a
+        key={`${href}-${start}`}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline underline-offset-4 hover:opacity-80"
+      >
+        {label}
+      </a>
+    );
+
+    lastIndex = end;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+
+  return parts;
+}
 
 interface ChatMessageProps {
   role: "user" | "assistant";
@@ -39,7 +80,7 @@ const ChatMessage = ({ role, content, isStreaming }: ChatMessageProps) => {
         )}
       >
         <p className="text-sm leading-relaxed whitespace-pre-wrap">
-          {content}
+          {renderMarkdownLinks(content)}
           {isStreaming && (
             <span className="inline-block w-1.5 h-4 ml-0.5 bg-current animate-pulse rounded-sm" />
           )}
